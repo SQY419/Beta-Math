@@ -1,0 +1,45 @@
+digit = 100;
+k = 1;
+n = ceil((digit + 1) / 8) * 27;
+n1 = n;
+ys = Array(n + 2);
+while k <= n + 2 {
+    ys[k] = 20000000;
+    k++;
+}
+
+quotient = 0;
+sum1 = 0;
+
+define temp() {
+    b = n - 1;
+    while b > 0 {
+        sum1 = quotient * b + 100000000 * ys[b + 1];
+        ys[b + 1] = sum1 % (2 * b - 1);
+        quotient = floor(sum1 / (2 * b - 1));
+        b--;
+    }
+}
+
+p = "";
+lowbits = 0;
+l = 1;
+while l <= (1 + ceil(n1 / 27)) {
+    sum1 = 100000000 * ys[n + 1];
+    ys[n + 1] = sum1 % (2 * n - 1);
+    quotient = floor(sum1 / (2 * n - 1));
+    temp();
+    n = n - 27;
+    j = lowbits + floor(sum1 / 100000000);
+    jStr = "" + j;
+    zeroCount = 8 - length(jStr);
+    zeroStr = "";
+    if zeroCount > 0 {
+        zeroStr = "0" * zeroCount;     // 字符串重复
+    }
+    p = p + zeroStr + jStr;
+    lowbits = sum1 % 100000000;
+    l++;
+}
+
+print(p);
