@@ -1,0 +1,196 @@
+define bfft(a, b) {
+    if (a == 0 || b == 0) {
+        return 0;
+    } else {
+        result = "";
+        numa = [];
+        alog2temp = round(2 ^ (ceil((log(1 + ceil(length(a) / 4) + ceil(length(b) / 4))) / log(2))));
+        k = 1;
+        while (k <= (alog2temp - ceil(length(a) / 4))) {
+            append(numa, 0);
+            append(numa, 0);
+            k = k + 1;
+        }
+        
+        tempcount = 0;
+        temp = "";
+        k = 1;
+        while (k <= length(a) - 4 * floor(length(a) / 4)) {
+            tempcount = tempcount + 1;
+            temp = temp + substr(a, tempcount, tempcount);
+            k = k + 1;
+        }
+        if (temp != "") {
+            append(numa, number(temp));
+            append(numa, 0);
+        }
+        k = 1;
+        while (k <= floor(length(a) / 4)) {
+            append(numa, number(substr(a, tempcount + 1, tempcount + 4)));
+            append(numa, 0);
+            k = k + 1;
+            tempcount = tempcount + 4;
+        }
+        
+        numb = [];
+        k = 1;
+        while (k <= alog2temp - ceil(length(b) / 4)) {
+            append(numb, 0);
+            append(numb, 0);
+            k = k + 1;
+        }
+        tempcount = 0;
+        temp = "";
+        k = 1;
+        while (k <= length(b) - 4 * floor(length(b) / 4)) {
+            tempcount = tempcount + 1;
+            temp = temp + substr(b, tempcount, tempcount);
+            k = k + 1;
+        }
+        if (temp != "") {
+            append(numb, number(temp));
+            append(numb, 0);
+        }
+        k = 1;
+        while (k <= floor(length(b) / 4)) {
+            append(numb, number(substr(b, tempcount + 1, tempcount + 4)));
+            append(numb, 0);
+            k = k + 1;
+            tempcount = tempcount + 4;
+        }
+        // omega
+        dtg = pi / 180;
+        gtd = 180 / pi;
+        omega = [];
+        resultl = [];
+        j = 0;
+        k = 1;
+        while (k <= length(numa) / 2) {
+            append(omega, cos(dtg * j * 360 / (length(numa) / 2)));
+            append(omega, sin(dtg * j * 360 / (length(numa) / 2)));
+            k = k + 1;
+            j = j + 1;
+        }
+        // FFT（Cooley-Tukey）
+        len = length(numa) / 2;
+        r1 = 1;
+        while (r1 <= ln(length(numa) / 2) / ln(2)) {
+            temp2 = 1;
+            r2 = 1;
+            rep = length(numa) / 2 / len;
+            while (r2 <= rep) {
+                j = 1;
+                r3 = 1;
+                while (r3 <= len / 2) {
+                    f1 = numa[temp2];
+                    f2 = numa[temp2 + 1];
+                    f3 = numa[temp2 + len];
+                    f4 = numa[temp2 + len + 1];
+                    numa[temp2] = f1 + f3;
+                    numa[temp2 + 1] = f2 + f4;
+                    numa[temp2 + len] = (f1 - f3) * omega[j] + (f2 - f4) * omega[j + 1];
+                    numa[temp2 + len + 1] = (f2 - f4) * omega[j] - (f1 - f3) * omega[j + 1];
+                    f5 = numb[temp2];
+                    f6 = numb[temp2 + 1];
+                    f7 = numb[temp2 + len];
+                    f8 = numb[temp2 + len + 1];
+                    numb[temp2] = f5 + f7;
+                    numb[temp2 + 1] = f6 + f8;
+                    numb[temp2 + len] = (f5 - f7) * omega[j] + (f6 - f8) * omega[j + 1];
+                    numb[temp2 + len + 1] = (f6 - f8) * omega[j] - (f5 - f7) * omega[j + 1];
+                    r3 = r3 + 1;
+                    temp2 = temp2 + 2;
+                    j = j + length(numa) / len;
+                }
+                temp2 = temp2 + len;
+                r2 = r2 + 1;
+            }
+            r1 = r1 + 1;
+            len = len / 2;
+        }
+        // .*
+        resultl = [];
+        temp2 = 1;
+        k = 1;
+        while (k <= length(numa) / 2) {
+            append(resultl, numa[temp2] * numb[temp2] - numa[temp2 + 1] * numb[temp2 + 1]);
+            append(resultl, numa[temp2] * numb[temp2 + 1] + numa[temp2 + 1] * numb[temp2]);
+            temp2 = temp2 + 2;
+            k = k + 1;
+        }
+        // IFFT
+        len = 2;
+        r1 = 1;
+        while (r1 <= ln(length(numa) / 2) / ln(2)) {
+            temp2 = 1;
+            r2 = 1;
+            rep = length(numa) / 2 / len;
+            while (r2 <= rep) {
+                j = 1;
+                r3 = 1;
+                while (r3 <= len / 2) {
+                    f3 = resultl[temp2 + len] * omega[j] - resultl[temp2 + len + 1] * omega[j + 1];
+                    f4 = resultl[temp2 + len] * omega[j + 1] + resultl[temp2 + len + 1] * omega[j];
+                    f1 = resultl[temp2];
+                    f2 = resultl[temp2 + 1];
+                    resultl[temp2] = f1 + f3;
+                    resultl[temp2 + 1] = f2 + f4;
+                    resultl[temp2 + len] = f1 - f3;
+                    resultl[temp2 + len + 1] = f2 - f4;
+                    r3 = r3 + 1;
+                    temp2 = temp2 + 2;
+                    j = j + length(numa) / len;
+                }
+                temp2 = temp2 + len;
+                r2 = r2 + 1;
+            }
+            r1 = r1 + 1;
+            len = len * 2;
+        }
+        // parse result
+        if (length(a) + length(b) < 4) {
+            result = round(resultl[length(resultl) - 3] / (length(resultl) / 2));
+        } else {
+            result = "";
+            temp = length(resultl) - 3;
+            b0 = "";
+            tempresult = 0;
+            k = 1;
+            while (k <= floor(0.25 * (length(a) + length(b)))) {
+                tempresult = tempresult + round(resultl[temp] / (length(resultl) / 2));
+                if (tempresult > 0) {
+                    result = tempresult % 10000 + b0 + result;
+                    b0 = "0" * (4 - length(round(tempresult % 10000)));
+                    tempresult = floor(tempresult / 10000);
+                } else {
+                    result = "0000" + result;
+                    tempresult = 0;
+                }
+                temp = temp - 2;
+                k = k + 1;
+            }
+            tempresult = tempresult + round(resultl[temp] / (length(resultl) / 2));
+            if (tempresult > 0) {
+                result = (tempresult % 10000) + b0 + result;
+            }
+        }
+        return result;
+    }
+}
+
+
+define fastpow(x, y) {
+    if (y == 1) {
+        return x;
+    } else {
+        if (y % 2 == 1) {
+            t = fastpow(x, (y - 1) / 2);
+            return bfft(x, bfft(t, t));
+        } else {
+            t = fastpow(x, y / 2);
+            return bfft(t, t);
+        }
+    }
+}
+
+print(fastpow(2,1000));
