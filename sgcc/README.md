@@ -1,4 +1,9 @@
-## sgcc语言介绍
+<h1 align="center">Sgcc II</h1>
+
+<p align="center">基于Scratch实现的编程语言</p>
+
+
+## 介绍
 
 不同于GoboScript和Fuse，sgcc是在Scratch内部完成编译和运行，而它们则是在外部依赖其他语言。
 
