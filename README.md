@@ -1,2 +1,3 @@
-# Scratch-mathematica-projects
-Scratch mathematica projects
+# Beta Math 
+使用scratch编写的数学库
+
