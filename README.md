@@ -6,11 +6,9 @@
 
 使用scratch编写的数学库
 
+[Scratch](https://scratch.mit.edu)·[turbowarp](https://turbowarp.org)
+
 </div>
-
-[Scratch](https://scratch.mit.edu)
-
-[turbowarp](https://turbowarp.org)
 
 ***
 这里有什么？
