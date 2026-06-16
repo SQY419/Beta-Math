@@ -5,22 +5,21 @@
 
 ## 介绍
 
-不同于GoboScript和Fuse，sgcc是在Scratch内部完成编译和运行，而它们则是在外部依赖其他语言。
+不同于[GoboScript](https://github.com/aspizu/goboscript,)和[Fuse](https://github.com/scratch-fuse/core,)，sgcc是在Scratch内部完成编译和运行，而它们则是在外部依赖其他语言。
 
 ### 一、语言特性概览
 
- -  动态类型：变量无需声明类型，支持整数、字符串、数组、函数、对象（计划实现）等。
- -  作用域：全局、函数级、块级（if/while/catch 等），变量沿作用域链向上查找。
+ -  动态类型：变量无需声明类型，支持浮点数、字符串、数组、函数、对象（未实现）等。
+ -  作用域：全局、函数级、块级，变量沿作用域链向上查找。
  -  面向对象（还未实现）：支持类、单继承、实例属性、方法。
- -  函数式（不完全）：支持匿名函数（闭包）、高阶函数。
  -  异常处理：try-catch-throw。
  -  并发：无（单线程）。
- -  内存管理：手动（基于堆分配，无垃圾回收）。
+ -  内存管理：手动（无垃圾回收）。
 
 ### 二、词法规则
 
- -  注释：// 单行注释。
- -  标识符：[a-zA-Z_][a-zA-Z0-9_]*。
+ -  注释：`// 单行注释`。
+ -  标识符：`[a-zA-Z_][a-zA-Z0-9_]*`。
  -  关键字：
   ```
   if, elif, else, while, for, break, continue, return, define, class, var, local,
@@ -31,15 +30,15 @@
  -  运算符：
   ```
   +, -, *, /, ^, %, =, +=, -=, *=, /=, ++, --, ==, !=, <, >, <=, >=,
-  && (and), || (or), ! (not), ? :, ., [, ], (, ), ,, ;, :
+  && (and), || (or), ! (not), ? :
   ```
  -  字面量：
-   -  浮点数：123, -456.78
-   -  字符串："hello"
-   -  数组：[1, 2, 3]
-   -  字典（未实现）：{"name": "Alice", "age": 30}
-   -  布尔：true, false
-   -  空值（未实现）：null
+   -  浮点数：`123`, `-456.78`, `0.0`
+   -  字符串：`"hello"`
+   -  数组：`[1, 2, 3]`
+   -  字典（未实现）：`{"name": "Alice", "age": 30}`
+   -  布尔：`true`, `false`
+   -  空值（未实现）：`null`
 
 ### 三、语句语法
 
@@ -49,11 +48,12 @@
 expr ;
 ```
 
-示例：`a = 5;`, `print(1+2)`;
+示例：`a = 5;`, `print(1+2);`
 
 2. 变量声明
 
 ```
+identifier = expr;
 local identifier [ = expr ] , ... ;
 ```
 
@@ -72,8 +72,8 @@ left 可以是变量、数组元素、属性、字典键。
 4. 控制流
 
 ```
-if ( expr ) statement [ elif ( expr ) statement ]... [ else statement ]
-while ( expr ) statement
+if expr statement [ elif expr statement ]... [ else statement ]
+while expr statement
 break ;
 continue ;
 return [ expr ] ;
@@ -140,9 +140,9 @@ expr . identifier ( [ expr , ... ] ) ;
 ### 四、表达式优先级（从低到高）
 
 1. `= , += , -= , *= , /= , ++ , --`
-2. or
-3. and
-4. not
+2. `or`
+3. `and`
+4. `not`
 5. `< , > , <= , >= , == , !=`
 6. `+ , -`
 7. `* , /`
@@ -166,14 +166,33 @@ exp(x), alog(x)
 ```
 length(obj), 
 arr.append(arr, val), arr.insert(idx, val), arr.remove(idx), 
-str.split(delim)
+str.split(delim),
+arr.find(item), arr.count(item), arr.include(item)
 ```
+
+字符串
+```
+length(str),
+string(x), number(x),
+substr(str, start, end),
+str.find(sub), str.count(sub), str.include(sub)
+```
+
+注意: 可以使用索引访问字符串指定位置的字符。例如`"114514"[-1]`。
+
 其他
 ```
-print(expr), eval(str), when(cond, trueVal, falseVal)
-string(x), number(x)
+print(expr), eval(str), 
+when(cond, trueVal, falseVal)
 ```
-，
+
+可变参数
+```
+min(val1[, val2[, val3[, ... ]]]), 
+max(val1[, val2[, val3[, ... ]]]),
+concat(val1[, val2[, val3[, ... ]]])
+```
+
 ### 六、作用域规则
 
  -  全局：最外层，变量默认全局。
@@ -225,16 +244,6 @@ class Dog(Animal) {
 d = Dog();
 d.name = "Buddy";
 d.speak();  // Buddy barks
-```
-
-匿名函数与闭包（未实现）
-
-```
-def make_adder(x) {
-    return (y) => x + y;
-}
-add5 = make_adder(5);
-print(add5(3));  // 8
 ```
 
 ### 八、注意事项
