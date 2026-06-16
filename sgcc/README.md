@@ -259,6 +259,10 @@ d.speak();  // Buddy barks
 
 ### 概览
 
+当运行sgcc脚本时，脚本内容`Script`传入函数`Parser`。之后运行`parse_program`, `init`, `execute`。
+
+打印输出的内容存储在`output`列表中。
+
 函数`push`和`pop`用于压入和弹出总栈。`.last`变量存储总栈的项目数减一。
 
 `push(value, type)`用于向总栈中压入类型为`type`的`value`。
