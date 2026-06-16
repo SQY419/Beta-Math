@@ -14,7 +14,7 @@ High precision Calculator mathematics·高精度计算软件 V2.0.5
 *—内存几百条数学公式*
 
 
-[*—流畅运行 快速计算*](https://aerfaying.com/Studios/68627/Forum/PostView?postId=33758)（点击）
+[*—流畅运行 快速计算*](https://gitblock.cm/Studios/68627/Forum/PostView?postId=33758)（点击）
 
 
 *—全开放免费*
@@ -36,7 +36,7 @@ High precision Calculator mathematics·高精度计算软件 V2.0.5
 [mit版](https://scratch.mit.edu/projects/759915800/)
 
 
-[使用说明#1133334](https://aerfaying.com/Projects/1133334)
+[使用说明#1133334](https://gitblock.cn/Projects/1133334)
 ![](https://asset.gitblock.cn/Media?name=3AE7C33C9134CC3B187194371C2205EC.png)
 
 ***
