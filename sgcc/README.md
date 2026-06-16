@@ -265,7 +265,7 @@ d.speak();  // Buddy barks
 
 打印输出的内容存储在`output`列表中。
 
-一个完整的事例是: 
+一个完整的例子是: 
 
 ```
 hat:GreenFlagClicked
@@ -288,4 +288,11 @@ hello world!
 
 sgcc的函数位于`BUILTIN`, `BUILTIN_VAR`中。可变参数的函数均位于后者。
 
-调用`BUILTIN_VAR`时，全局变量`count`将会记录收集的参数个数。
+调用`BUILTIN_VAR`时，全局变量`count`将会记录收集的参数个数。每个函数均有自己的`funcId`，可以在同名列表中查看，通过这id调用指定的函数。例如`sin`的id为1，那么下列编译后的代码：
+```
+1 0.5 // push 0.5
+31 1  // BUILTIN sin 0.5
+8 0   // print last item of stack
+```
+将打印`sin(0.5)`的值。
+表示指令的地址可能会变化，这里仅供参考。
