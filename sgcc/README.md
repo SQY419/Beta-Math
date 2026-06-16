@@ -4,9 +4,8 @@
 </h1>
 
 <p align="center">
-  
-
-基于Scratch 3.0实现的编程语言</p>
+基于Scratch 3.0实现的编程语言
+</p>
 
 
 ## 介绍
