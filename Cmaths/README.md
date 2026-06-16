@@ -1,8 +1,12 @@
-**请转移至ZhuangBi Mathematica Solver 1.0.0** {.text-center}
+此为原始简介的备份
+
+***
+
+**请转移至ZhuangBi Mathematica 1.0.0**
 
 
 ***
-High precision Calculator mathematics·高精度计算软件 V2.0.5{.btn-outline-primary text .text-center}
+High precision Calculator mathematics·高精度计算软件 V2.0.5
 
 
 *—内存几百条数学公式*
