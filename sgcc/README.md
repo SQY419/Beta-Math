@@ -1,11 +1,13 @@
 <h1 align="center">Sgcc II</h1>
 
-<p align="center">基于Scratch实现的编程语言</p>
+<p align="center">基于Scratch 3.0实现的编程语言</p>
 
 
 ## 介绍
 
-不同于[GoboScript](https://github.com/aspizu/goboscript,)和[Fuse](https://github.com/scratch-fuse/core,)，sgcc是在Scratch内部完成编译和运行，而它们则是在外部依赖其他语言。sgcc是面向数学的脚本语言，内嵌于SGC v4.3+，与SGC绘图函数结合可以制作简易的演示动画与游戏。
+不同于[GoboScript](https://github.com/aspizu/goboscript,)和[Fuse](https://github.com/scratch-fuse/core,)，sgcc是在Scratch内部完成编译和运行，而它们则是在外部依赖其他语言。
+
+sgcc是面向数学的脚本语言，内嵌于SGC v4.3+，与SGC绘图函数结合可以制作简易的演示动画与游戏。sgcc极大地扩展了原生Scratch对于列表（尤其是嵌套）和字符串的处理能力，语法清晰且精简；源代码命名规范，易于维护。
 
 ### 一、特性
 
