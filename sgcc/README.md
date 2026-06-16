@@ -251,5 +251,20 @@ d.speak();  // Buddy barks
  -  数组索引从 1 开始，负索引 -k 表示倒数第 k 个。
  -  and / or 支持短路求值。
  -  null 参与算术运算或属性访问会抛出异常。
- -  所有内置函数均通过 BUILTIN/BUILTIN_VAR 指令实现，可扩展。
-<
+ -  所有内置函数均可扩展。
+
+***
+
+二次开发
+
+### 概览
+
+函数`push`和`pop`用于压入和弹出总栈。`.last`变量存储总栈的项目数减一。
+
+`push(value, type)`用于向总栈中压入类型为`type`的`value`。
+
+### 函数
+
+sgcc的函数位于`BUILTIN`, `BUILTIN_VAR`中。可变参数的函数均位于后者。
+
+调用`BUILTIN_VAR`时，全局变量`count`将会记录收集的参数个数。
