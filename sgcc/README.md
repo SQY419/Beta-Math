@@ -5,14 +5,13 @@
 
 ## 介绍
 
-不同于[GoboScript](https://github.com/aspizu/goboscript,)和[Fuse](https://github.com/scratch-fuse/core,)，sgcc是在Scratch内部完成编译和运行，而它们则是在外部依赖其他语言。
+不同于[GoboScript](https://github.com/aspizu/goboscript,)和[Fuse](https://github.com/scratch-fuse/core,)，sgcc是在Scratch内部完成编译和运行，而它们则是在外部依赖其他语言。sgcc是面向数学的脚本语言，内嵌于SGC v4.3+，与SGC绘图函数结合可以制作简易的演示动画与游戏。
 
-### 一、语言特性概览
+### 一、特性
 
  -  动态类型：变量无需声明类型，支持浮点数、字符串、数组、函数、对象（未实现）等。
  -  作用域：全局、函数级、块级，变量沿作用域链向上查找。
- -  面向对象（还未实现）：支持类、单继承、实例属性、方法。
- -  异常处理：try-catch-throw。
+ -  异常处理：`try-catch-throw`。
  -  并发：无（单线程）。
  -  内存管理：手动（无垃圾回收）。
 
@@ -252,6 +251,7 @@ d.speak();  // Buddy barks
  -  and / or 支持短路求值。
  -  null 参与算术运算或属性访问会抛出异常。
  -  所有内置函数均可扩展。
+ -  不建议使用!代替not，这可能会与阶乘函数混淆。只有`!(expr)`会被识别为`not(expr)`，`!expr`将会抛出错误。
 
 ***
 
