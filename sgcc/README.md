@@ -162,7 +162,7 @@ round(x[,digit]), floor(x), ceil(x),
 exp(x), alog(x)
 ```
 
-数组（已实现）/字典（未实现）
+数组（已实现）/ 字典（未实现）
 ```
 length(obj), 
 arr.append(arr, val), arr.insert(idx, val), arr.remove(idx), 
@@ -205,7 +205,7 @@ concat(val1[, val2[, val3[, ... ]]])
 递归与数组
 
 ```
-def fib(n) {
+define fib(n) {
     if (n <= 2) { return 1; }
     return fib(n-1) + fib(n-2);
 }
@@ -252,3 +252,4 @@ d.speak();  // Buddy barks
  -  and / or 支持短路求值。
  -  null 参与算术运算或属性访问会抛出异常。
  -  所有内置函数均通过 BUILTIN/BUILTIN_VAR 指令实现，可扩展。
+<
