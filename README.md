@@ -1,5 +1,12 @@
-# Beta Math 
+<div align="center">
+
+<p>
+  <img alt="logo" src="/src/betamath.svg" />
+</p>
+
 使用scratch编写的数学库
+
+</div>
 
 [Scratch](https://scratch.mit.edu)
 
