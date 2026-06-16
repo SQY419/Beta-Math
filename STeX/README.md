@@ -1,7 +1,12 @@
-S•TeX
+<div align="center">
+
+<p>
+  <img alt="logo" src="/src/stex_logo.svg" />
+</p>
 
 基于Scratch实现的不完全LaTeX渲染器
 
+</div>
 ***
 
 ## 简介
