@@ -1,7 +1,10 @@
-<h1 align="center">Sgcc II</h1>
+<h1 align="center">
+  <img alt="logo" src="/src/sgc_logo.svg" />
+  sgcc II
+</h1>
 
 <p align="center">
-  <img alt="logo" src="/src/sgc_logo.svg" />
+  
 
 基于Scratch 3.0实现的编程语言</p>
 
