@@ -1,9 +1,9 @@
 为你的原版Scratch 3.0提供符号计算能力。
 
 ***
-**symScratch** {.h3 .text-center}
+## **symScratch**
 
- (CAS, 计算器, 计算机代数系统) {.h6 .text-center}
+#### (CAS, 计算器, 计算机代数系统) 
 
 
 比较基础的计算机代数系统，基于二叉树和模式匹配。
