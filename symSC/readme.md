@@ -63,7 +63,7 @@ subst(f(x), x, y+1)
 approx(1/3)
 > 0.333333333333333
 
-seq(1/x^2, x, 0..3)
+simplify(seq(1/x^2, x, range(0, 3)))
 >                 1     1
   [ Infinity, 1, --- , --- ]
                   4     9
@@ -76,25 +76,31 @@ simplify(x + 2 x)
 simplify((2 + 2 x) / (1 + x))
 > 2
 
-simplify(sqrt(4-2 sqrt(3)))
+simplify(sqrt(4 - 2 sqrt(3)))
 >       +---
   -1 + \| 3
 ```
-`diff(f(var)[, var])`
+
+导数 `diff(f(var)[, var])`
+
 ```
-diff(sin(x), x)
-> cos(x)
+diff(sin(t), t)
+> cos(t)
 
 diff(x^x, x)
 >   x             x
   x   + ln(x) * x
 ```
 
-还没实现的：
+求解
+
 ```
 solve(x^2-1, x)
 > [-1, 1]
+```
 
+还没实现的：
+```
 series(sin(x),x,0,5)
 >       3     5
       x     x             6
